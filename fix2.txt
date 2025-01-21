@@ -1,0 +1,26 @@
+Git config - konfiguerar git-inställningarna
+--global - Flaggan anger att inställningarna ska tillämpas globalt för alla git-repositiories på datorn. Utelämnar man denna blir det för för ett specifikt repo.
+
+Steg 1.
+1. Skriver in git --version i powershell vilket gav tillbaka den senaste git-verisionen (git version 2.47.1.windows.2).
+2. La in användarnamn Tova och min email med kommandon som angavs i instruktionen. Kontrollerade att rätt var inlagt genom  git config --global user.name och motsvarande för email.
+3. För att ställa in standardnamnet på huvudbranchen/head branch till main används git config --global init.defaultBranch main. init.defaultBranch är branchen som ska ändras, main är det nya namnet som är en standard för standardgrenen.
+4. git confiq --list listar ändringarna/inställningarna som gjorts.
+
+Steg 2.
+1. Jag la till ett git-repo med namnet main genom att först välja sökväg där repot ska ligga i och sedan skapa ett nytt repository med git init. Jag skapade ingen ny mapp eftersom jag redan hade en. Annars hade jag kunnat skapa en ny mapp genom mkdir C:/sökväg/och/sen/den/nya/mappen
+2. För att skapa en textfil med djur-rader använde jag "duck" | Out-File -FilePath README.md -Encoding utf8
+"moose" | Out-File -Append -FilePath README.md -Encoding utf8... Jag gjorde sedan en commit med filen med git add README.md
+3. ...och senatsedan git commit -m "Initial commit"
+4. Jag skapar en ny branch med git branch feature1 och växlar till den genom git checkout feature1
+5. La till en ny rad på samma sätt som tidigare. Ändrade moose till mouse genom  (Get-Content README.md) -replace 'moose', 'mouse' | Set-Content README.md. För att lägga till dog i slutet: "dog" | Out-File -Append -FilePath README.md -Encoding utf8.
+6. git checkout main, motsvarande ändring från moose till mahmut som ovan och gör en commit.
+7. git merge feature1 när jag befinner mig på main. För att lösa merge-konflikten öppnar jag filen i intelliJ och väljer resolve conflicts. Jag väljer att behålla mahmut från main samt mouse och dog från feature1.
+8. Jag skapar en lightweight tag genom git tag -a exstinct -m "meddelande", jag försökte skapa utan meddelande men powershell ville inte acceptera det.
+9. För att gå tillbaka ett steg med main och HEAD, samt gå tillbaka till denna verision använder jag git reset --hard och sedan commit-id
+10. git branch feature2
+11. För att ändra till stora bokstäver i början av orden: $words = @("Duck", "Mahmut", "Cat")
+$words | Set-Content README.md
+12. git checkout feature2. Använde New-Item -Path fix1.txt -ItemType File för att lägga till textfilen och sedan en commit. Motsvarande för fix2.txt.
+13. git checkout main. För att se mitt lokala filsystem använder jag Get-ChildItem
+14. Först skriver jag git log på feature2-branchen och sparar commit-id för fix2.txt. Sedan skriver jag git cherry-pick och id medans jag är på main-branchen.
